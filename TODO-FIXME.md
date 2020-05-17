@@ -1,11 +1,6 @@
-% =========================================
-% TODO:
-% =========================================
-%   - Check out wish list for now ...
-%
-%
-%
-% =========================================
-% FIXME:
-% =========================================
-%   - I'm sure there are bugs ...
+
+### TODO
+1. umm... maybe check out the wish list ...
+
+### FIXME
+1. I'm sure there are bugs to be squashed ...
