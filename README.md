@@ -2,14 +2,21 @@
 
 If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts, well my friend, you may be in luck!
 
-Explain what it is, and briefly what situations this may come in handy.
-It was inspired by phython's `logging` package.
+Logger provides a lot of functionalities and flexibility which regular `fprintf()`" or `disp()` commands cannot. Such added funcitonalities include: 
+* Specifiying log message urgency levels
+* Log message formatting (red color, bold font)
+* Setting a default urgency level
+* Logging to a log file
+* Logging accross multiple files
+* and more ...
+
+Logger was inspired by phython's `logging` package.
 
 
 ### Very Basically ...
 1. Every time you want to log/show/save a message, you can do that with this logger.
 2. The logger can display a message with different levels such as `debug`, `error`, or `fatal`.
-3. There are many other things this logger can do that a simple `fprintf()` command can not.
+3. There are many other things this logger can do, that a simple `fprintf()` command cannot.
 
 
 ## :eyeglasses: Overview
