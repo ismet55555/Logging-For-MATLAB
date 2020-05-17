@@ -14,7 +14,7 @@ Logger was inspired by phython's `logging` package.
 
 
 ### Very Basically ...
-1. Every time you want to log/show/save a message, you can do that with this logger.
+1. Every time you want to log/show/save a message in the command window or in a file, you can do that with this logger.
 2. The logger can display a message with different levels such as `debug`, `error`, or `fatal`.
 3. There are many other things this logger can do, that a simple `fprintf()` command cannot.
 
