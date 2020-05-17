@@ -1,14 +1,16 @@
 <h1 align="center">Logging For MATLAB/Octave :bowtie:</h1>
 
-If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts scripts, well my friend, you may be in luck...
-Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts, well my friend, you may be in luck!
 
-Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  `BLAH`
+Explain what it is, and briefly what situations this may come in handy.
+It was inspired by phython's `logging` package.
+
 
 ### Very Basically ...
-1. Blah blah blah blah blah blah blah blah blah blah blah bl
-2. Blah blah blah blah blah blah blah blah blah blah blah bl
-3. Blah blah blah blah blah blah blah blah blah blah blah bl
+1. Every time you want to log/show/save a message, you can do that with this logger.
+2. The logger can display a message with different levels such as `debug`, `error`, or `fatal`.
+3. There are many other things this logger can do that a simple `fprintf()` command can not.
+
 
 ## :eyeglasses: Overview
 
