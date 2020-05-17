@@ -947,36 +947,3 @@ classdef (ConstructOnLoad = false) logger < handle
         end
     end
 end
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO:
-%   - Store messages for recall (TOO SLOW!!! 0.002 per log!)
-%         - Maybe only by choice
-%         - Maybe only log when logs were done
-%
-% FIXME:
-%   - If logger is created in the same file over and over
-%
-%
-% WISH LIST
-%   - Write to file in batches instead of line by line
-%   - Seperate message formatting for command window and file
-%   - Remote server or location logging
-%   - Integrate with remote logging services
-%   - Simple DAQ option
-%       - logger.daq_init()             - filename, precision formatting, delimiter, show_headers
-%       - logger.daq(<float data>)      - Log the float type data (or some
-%       - Store in seperate file (.csv file)
-%           - https://www.thoughtspot.com/6-rules-creating-valid-csv-files
-%           - https://neo4j.com/docs/operations-manual/current/tools/import/file-header-format/
-%       - Time stamp and data (absoulute time, a)
-%       - Needs headers (with ID int as first column)
-%       - Store in logger
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
