@@ -37,7 +37,7 @@ Logger was inspired by phython's `logging` package.
 
 ## :thumbsup: Compatibility
 This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well(I would love to hear about usage on earlier versions).
-### Performance
+
 
 
 
@@ -54,6 +54,19 @@ This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5
     - *etc*
 
 ## :boom: Usage
+
+Some creation examples are as follows:
+```matlab
+% Creating a logger with the name "My Cool Logger"
+log = logger("My Cool Logger")
+
+% Creating a logger that logs messages with the current date, 
+% current time, and the line number that send the log
+log = logger("Badass Logger", true, true, false, false, true)
+```
+
+
+## :blue_book: Reference Docummentation
 ### Creation
 The following command creats a logger object that is used to log messages
 ```matlab
@@ -72,15 +85,10 @@ Although all of the creation/constructor logger parameters are optional with def
 |     5    | `show_logging_function`   |     Boolean    |    Yes   |     false     | Show the function where the log message was made   |
 |     6    | `show_logging_linenumber` |     Boolean    |    Yes   |     false     | Show the linenumber where the log message was made |
 
-Some creation examples are as follows:
-```matlab
-% Creating a logger with the name "My Cool Logger"
-log = logger("My Cool Logger")
 
-% Creating a logger that logs messages with the current date, 
-% current time, and the line number that send the log
-log = logger("Badass Logger", true, true, false, false, true)
-```
+
+
+
 
 ### Methods
 Logging Methods
