@@ -35,9 +35,6 @@ Logger was inspired by phython's `logging` package.
 * [Licence](#licence)
 
 
-## :thumbsup: Compatibility
-This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well(I would love to hear about usage on earlier versions).
-
 ## :fast_forward: Quick Start
 ```matlab
 % Creating a logger
@@ -52,6 +49,21 @@ log.info("Hello sweet sweet world!")
 log.warning("Hey watch out! A bus!")
 log.fatal("Goodbye, crewl crewl world ...")
 ```
+---
+**Command Window Output**
+Note that the warning is red color and warning log is red band bold color
+```
+[23:38:58.619][INFO    ] : Hello sweet sweet world!
+[23:38:58.671][WARNING ] : Hey watch out! A bus!
+[23:38:58.681][FATAL   ] : Goodbye, crewl crewl world ...
+```
+**NOTE**: *The warning log message is in red color. The fatal log message is red color and bold*
+
+
+## :thumbsup: Compatibility
+This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well(I would love to hear about usage on earlier versions).
+
+
 
 
 ## :rocket: Installing and Setup
