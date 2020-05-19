@@ -38,8 +38,20 @@ Logger was inspired by phython's `logging` package.
 ## :thumbsup: Compatibility
 This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well(I would love to hear about usage on earlier versions).
 
+## :fast_forward: Quick Start
+```matlab
+% Creating a logger
+log = logger();
 
+% Setting some logger options
+log.show_time = true;
+log.show_ms = true;
 
+% Logging some Messages
+log.info("Hello sweet sweet world!")
+log.warning("Hey watch out! A bus!")
+log.fatal("Goodbye, crewl crewl world ...")
+```
 
 
 ## :rocket: Installing and Setup
@@ -52,6 +64,9 @@ This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5
     - `log.info("This is a log message")`
     - `log.warning("This is a warning log message")`
     - *etc*
+
+
+
 
 ## :boom: Usage
 
