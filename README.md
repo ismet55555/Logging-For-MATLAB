@@ -49,7 +49,6 @@ log.info("Hello sweet sweet world!")
 log.warning("Hey watch out! A bus!")
 log.fatal("Goodbye, crewl crewl world ...")
 ```
----
 **Command Window Output**
 Note that the warning is red color and warning log is red band bold color
 ```
