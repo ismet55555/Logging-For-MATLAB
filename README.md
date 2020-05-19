@@ -1,4 +1,4 @@
-<h1 align="center">Logging For MATLAB/Octave :bowtie:</h1>
+<h1 align="center">Logging For MATLAB/Octave :notebook:</h1>
 
 If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts, well my friend, you may be in luck!
 
