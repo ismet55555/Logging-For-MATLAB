@@ -90,8 +90,6 @@ log = logger("My Cool Logger")
 log = logger("Badass Logger", true, true, false, false, true)
 ```
 
-## Note on Performance and Speed
-TODO ...
 
 
 ## :blue_book: Reference Docummentation
@@ -162,6 +160,10 @@ Properties related to logger behavior
 | `.enabled`                 |     Boolean    |        true       | Enable or disable the logger                          |
 | `.log_directory`           | String or Char |       *pwd*       | Directory where log file will be saved                |
 | `.log_filename`            | String or Char | <logger_name>.log | File name into which the logs will be saved           |
+
+
+## :clock5: A Note on Performance and Speed
+TODO ...
 
 
 ## :bust_in_silhouette: Author
