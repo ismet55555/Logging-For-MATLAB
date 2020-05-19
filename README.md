@@ -2,7 +2,7 @@
 
 If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts, well my friend, you may be in luck!
 
-Logger provides a lot of functionalities and flexibility which regular `fprintf()`" or `disp()` commands cannot. Such added funcitonalities include: 
+Logger ([`logger.m`](logger.m)) provides a lot of functionalities and flexibility which regular `fprintf()`" or `disp()` commands cannot. Such added funcitonalities include: 
 * Specifiying log message urgency levels
 * Log message formatting (red color, bold font)
 * Setting a default urgency level
@@ -66,9 +66,10 @@ This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5
 
 ## :rocket: Installing and Setup
 1. Download/copy the [`logger.m`](logger.m) file into your working directory
-    - You can use the "Clone or Download" button GitHub provides 
-    - You can even go to the file here, select it, and copy it into a new script called `logger.m`
-2. Create the logger object (more in section XXXXXX)
+    - You can use the "Clone or Download" button GitHub provides to download this entire repo
+    - You can right click on this link, [`logger.m`](logger.m), and "Save Link As ..."
+    - You can even go [`logger.m`](logger.m), and copy all code into a new script called `logger.m`
+2. Create the logger object and store in any variable
     - `log = logger()`
 3. Use the assigned variable to use the logger
     - `log.info("This is a log message")`
