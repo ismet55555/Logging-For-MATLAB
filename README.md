@@ -36,63 +36,96 @@ Logger was inspired by phython's `logging` package.
 
 
 ## :thumbsup: Compatibility
+This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well(I would love to hear about usage on earlier versions).
+### Performance
 
-### Minimum System Requirements
-Blah blah blah blah blah blah blah bla
-- __CPU__: 1.2 GHz
-- __CPUs/Cores__: 4
-- __RAM__: 1GB
-- __Disk Storage__: 400 MB + Images
-
-
-### Verified Platforms
-Blah blah blah blah blah blah blah bla
-
-|           Works Fine           |    Will Not Work    |
-|:------------------------------:|:-------------------:|
-| Raspberry Pi 3b+ *(Raspbian)*  | Raspberry Pi Zero W |
-| Raspberry Pi 4 *(Raspbian)*    |                     |
-| Atomic Pi *(Lubuntu 18.04)*    |                     |
-| Ubuntu 16.04 and up            |                     |
-
-I have not tried it out on `Microsoft WSL (Windows Subsystem for Linux)`, but may work on it as well.
 
 
 
 ## :rocket: Installing and Setup
-1. *[If on remote computer]* Enter remote linux device using `ssh`:
-    - MAC/Linux Terminal, Windows Powershell: `ssh <username/login>@<IP address of picture frame computer>`
-    - May need to enable SSH on remote linux host computer: `sudo apt install -y openssh-server`
-2. Navigate into user documents directory: 
-    - `$ cd ~/Documents`
-3. Install git:
-    - `$ sudo apt -y install git-all`
-4. Configure git:
-    - `$ git config --global user.name "Your Name Here"`
-    - `$ git config --global user.email "your.email@here.com"`
-5. Clone this public git repo form github:
-    - `$ git clone git@github.com:ismet55555/Super-Best-Frame.git`
-6. Change directory into cloned directory:
-    - `$ cd Super-Best-Frame`
-7. Install OpenCV system dependencies:
-    - `$ sudo apt -y install python3-opencv`
-8. Run the start script
-    - `$ ./start`
-
-**NOTE**: *Check out the [`start`](start) script to see what exactly it executes.*
-
+1. Download/copy the [`logger.m`](logger.m) file into your working directory
+    - You can use the "Clone or Download" button GitHub provides 
+    - You can even go to the file here, select it, and copy it into a new script called `logger.m`
+2. Create the logger object (more in section XXXXXX)
+    - `log = logger()`
+3. Use the assigned variable to use the logger
+    - `log.info("This is a log message")`
+    - `log.warning("This is a warning log message")`
+    - *etc*
 
 ## :boom: Usage
-TODO - Maybe some gifs
+### Creation
+The following command creats a logger object that is used to log messages
+```matlab
+log = logger(<logger_name>, <show_date>, <show_time>, <show_logging_filename>, <show_logging_function>, <show_logging_linenumber>, <log_filename>)
+```
+You then in turn use the `log` variable to execute logging functions (ie. `log.warning("Watch out!")`)
+Although all of the creation/constructor logger parameters are optional with default values, you may use any of these in the above creation command.  
+**NOTE**: *Note that any of these can be changed anytime after creation.*
+
+| Parmeter | Name                      |      Type      | Optional | Default Value | Description                                        |
+|:--------:|---------------------------|:--------------:|:--------:|:-------------:|----------------------------------------------------|
+|     1    | `logger_name`             | String or Char |    Yes   |   "Default"   | Name of the logger                                 |
+|     2    | `show_date`               |     Boolean    |    Yes   |     false     | Show the current date in a log message             |
+|     3    | `show_time`               |     Boolean    |    Yes   |     false     | Show the current time in the log message           |
+|     4    | `show_logging_filename`   |     Boolean    |    Yes   |     false     | Show the file where the log message was made       |
+|     5    | `show_logging_function`   |     Boolean    |    Yes   |     false     | Show the function where the log message was made   |
+|     6    | `show_logging_linenumber` |     Boolean    |    Yes   |     false     | Show the linenumber where the log message was made |
+
+Some creation examples are as follows:
+```matlab
+% Creating a logger with the name "My Cool Logger"
+log = logger("My Cool Logger")
+
+% Creating a logger that logs messages with the current date, 
+% current time, and the line number that send the log
+log = logger("Badass Logger", true, true, false, false, true)
+```
+
+### Methods
+Logging Methods
+| Method                             |      Parameter Type     | Description                            |
+|------------------------------------|:-----------------------:|----------------------------------------|
+| `.debug(<Log Message>)`            |      String or Char     | Log a debug level message (Level 1)    |
+| `.info(<Log Message>)`             |      String or Char     | Log a info level message (Level 2)     |
+| `.warning(<Log Message>)`          |      String or Char     | Log a warning level message (Level 3)  |
+| `.error(<Log Message>)`            |      String or Char     | Log a error level message (Level 4)    |
+| `.critical(<Log Message>)`         |      String or Char     | Log a critical level message (Level 5) |
+| `.fatal(<Log Message>)`            |      String or Char     | Log a fatal level message (Level 6)    |
+| `.log(<Log Level>, <Log Message>)` | Integer, String or Char | Log a message with any available level |
+
+Utility Methods
+| Method                                   |      Parameter Type     | Description                            |
+|------------------------------------------|:-----------------------:|----------------------------------------|
+| `.get_logger_levels()`                   |            -            | List the available logging levels      |
+| `.time_the_logger(<Number of Messages>)` |         Integer         | Performance/Timing test for the logger |
+| `.clear_log_file()`                      |            -            | Clear log file for this logger         |
+| `.delete_log_file()`                     |            -            | Delete log file for this logger        |
 
 
-### Image Formats You Can Use
-- `.png`, `.jpg`, `.jpeg`, `.bmp`, `.dib`, `.jpe`, `.jp2`, `.pgm`, `.tiff`, `.tif`, `.ppm`
+### Properties
 
+Properties related to displayed log message information and formatting
+| Parameter                  |      Type      |      Default      | Description                                           |
+|----------------------------|:--------------:|:-----------------:|-------------------------------------------------------|
+| `.show_logger_name`        |     Boolean    |       false       | Show the name of the logger in the log message        |
+| `.show_date`               |     Boolean    |       false       | Show the current date in a log message                |
+| `.show_time`               |     Boolean    |       false       | Show the current time in the log message              |
+| `.show_ms`                 |     Boolean    |       false       | Show milliseconds in log message                      |
+| `.show_logging_filename`   |     Boolean    |       false       | Show the file name where the log message was logged   |
+| `.show_logging_function`   |     Boolean    |       false       | Show the function where the log message was logged    |
+| `.show_logging_linenumber` |     Boolean    |       false       | Show the line number where the log message was logged |
 
-### Adding Images
-Blah blah blah blah blah blah blah bla
-
+Properties related to logger behavior
+| Parameter                  |      Type      |      Default      | Description                                           |
+|----------------------------|:--------------:|:-----------------:|-------------------------------------------------------|
+| `.description`             | String or Char |    Some filler    | Custom description of the logger object instance      |
+| `.default_level`           |     Integer    |         2         | Lowest log level to be logged                         |
+| `.log_to_command_window`   |     Boolean    |        true       | Show the log messages in the command window           |
+| `.log_to_file`             |     Boolean    |       false       | Save log messages to the log file                     |
+| `.enabled`                 |     Boolean    |        true       | Enable or disable the logger                          |
+| `.log_directory`           | String or Char |       *pwd*       | Directory where log file will be saved                |
+| `.log_filename`            | String or Char | <logger_name>.log | File name into which the logs will be saved           |
 
 
 ## :bust_in_silhouette: Author
