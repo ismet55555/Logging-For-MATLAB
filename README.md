@@ -90,6 +90,9 @@ log = logger("My Cool Logger")
 log = logger("Badass Logger", true, true, false, false, true)
 ```
 
+## Note on Performance and Speed
+TODO ...
+
 
 ## :blue_book: Reference Docummentation
 ### Creation
