@@ -10,7 +10,7 @@ Logger ([`logger.m`](logger.m)) provides a lot of functionalities and flexibilit
 * Logging accross multiple files
 * and more ...
 
-Logger was inspired by phython's `logging` module.
+Logger was inspired by phython's `logging` package.
 
 
 ### Very Basically ...
@@ -23,15 +23,17 @@ Logger was inspired by phython's `logging` module.
 
 * [Quick Start](#fast_forward-quick-start)
 * [Compatibility](#thumbsup-compatibility)
-    * [Minimum System Requirements](#minimum-system-requirements)
-    * [Verified Platforms](#verified-platforms)
 * [Installing and Setup](#rocket-installing-and-setup)
 * [Usage](#boom-usage)
-    * [Image Formats You Can Use](#image-formats-you-can-use)
-    * [Adding Images](#adding-images)
-        * [Via Physical Flash/USB Drive](#via-physical-flashusb-drive)
-        * [Remotely Via scp Command](#remotely-via-scp-command)
-        * [Remotely Via ftp Command](#remotely-via-ftp-command)
+    * [Logging Within a Script](#logging-within-a-script)
+    * [Logging Accross Functions](#logging-accross-functions)
+    * [Logging Accross Files](#logging-accross-files)
+    * [Using Multiple Loggers](#using-multiple-loggers)
+* [Reference Docummentation](#blue_book-reference-docummentation)
+    * [Creation](#creation)
+    * [Methods](#methods)
+    * [Properties](#properties)
+* [Notes on Performance and Speed](#clock5-notes-on-performance-and-speed)
 * [Author](#bust_in_silhouette-author)
 * [Licence](#licence)
 
@@ -269,7 +271,7 @@ log = logger("Badass Logger", true, true, false, false, true)
 | `.log_filename`            | String or Char | <logger_name>.log | File name into which the logs will be saved           |
 
 ---
-## :clock5: A Note on Performance and Speed
+## :clock5: Notes on Performance and Speed
 - Understand that the speed per log may vary with the following logger settings.
     - *Logging formatting additions* - A logger that only shows the logger name will be very slightly faster than a logger displaying the name, date, time, and/or line number.
     - *Logging to file* - Currently logging to file versus not logging to file will be slower.
