@@ -1,4 +1,4 @@
-<h1 align="center">Logging For MATLAB/Octave :notebook:</h1>
+<h1 align="center">Logger For MATLAB/Octave :notebook:</h1>
 
 If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts, well my friend, you may be in luck!
 
@@ -37,7 +37,7 @@ Logger was inspired by phython's `logging` package.
 * [Author](#bust_in_silhouette-author)
 * [Licence](#licence)
 
----
+
 ## :fast_forward: Quick Start
 ```matlab
 % Creating a logger
@@ -60,18 +60,18 @@ log.fatal("Goodbye, crewl crewl world ...")
 ```
 **NOTE**: *The warning log message is in red color. The fatal log message is red color and bold*
 
----
+
 ## :thumbsup: Compatibility
-This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well(I would love to hear about usage on earlier versions).
+This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well *(I would love to hear about usage on earlier versions)*.
 
 
 
----
+
 ## :rocket: Installing and Setup
 1. Download/copy the [`logger.m`](logger.m) file into your working directory
     - You can use the "Clone or Download" button GitHub provides to download this entire repo
-    - You can right click on this link, [`logger.m`](logger.m), and "Save Link As ..."
-    - You can even go [`logger.m`](logger.m), and copy all code into a new script called `logger.m`
+    - You can right click on this link, [`logger.m`](logger.m), and "**Save Link As ...**"
+    - You can even go [`logger.m`](logger.m), and copy/paste all code into a new script called `logger.m`
 2. Create the logger object and store in any variable
     - `log = logger()`
 3. Use the assigned variable to use the logger
@@ -81,7 +81,7 @@ This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5
 
 
 
----
+
 ## :boom: Usage
 
 ### Logging Within a Script
@@ -148,7 +148,7 @@ log.info("Logging a message inside this function with same logger")
 ```
 
 ## Using Multiple Loggers
-You can assign differetn loggers for different purposes. For example, let's say you would like one logger to log all things related to one part of the program like the data aquisition, while another logger logs all messages related to the graphical interface of the program. 
+You can assign different loggers for different purposes. For example, let's say you would like one logger to log all things related to one part of the program like the data aquisition, while another logger logs all messages related to the graphical interface of the program. 
 
 In this case you can specify that each logger has its own message formatting and each logger saves its messages into seperate log files. In such a case you would also be able to seperately enable and disable each logger.
 
@@ -186,7 +186,7 @@ log_Default.info("Program ended")
 
 
 
----
+
 ## :blue_book: Reference Docummentation
 ### Creation
 The following command creats a logger object that is used to log messages
@@ -270,7 +270,7 @@ log = logger("Badass Logger", true, true, false, false, true)
 | `.log_directory`           | String or Char |       *pwd*       | Directory where log file will be saved                |
 | `.log_filename`            | String or Char | <logger_name>.log | File name into which the logs will be saved           |
 
----
+
 ## :clock5: Notes on Performance and Speed
 - Understand that the speed per log may vary with the following logger settings.
     - *Logging formatting additions* - A logger that only shows the logger name will be very slightly faster than a logger displaying the name, date, time, and/or line number.
