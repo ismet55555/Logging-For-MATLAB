@@ -71,9 +71,10 @@ I would love to hear about usage on earlier versions and other operating systems
 
 ## :rocket: Installing and Setup
 1. Download/copy the [`logger.m`](logger.m) file into your working directory
-    - You can use the "Clone or Download" button GitHub provides to download this entire repo
-    - You can right click on this link, [`logger.m`](logger.m), and "**Save Link As ...**"
-    - You can even go [`logger.m`](logger.m), and copy/paste all code into a new script called `logger.m`
+    - *Git:* Use the ol' git to clone the repo onto your computer
+    - *Download:* Use the "**Clone or Download**" button GitHub provides to download this entire repo as a .zip file
+    - *Save As:* Right click on this link, [`logger.m`](logger.m), and "**Save Link As ...**"
+    - *Copy/Paste:* Visit [`logger.m`](logger.m), and copy/paste all code into a new .m file script called `logger.m`
 2. In your script, create the logger object and store it in a variable 
     - `log = logger()`
     - *Please don't use `logger = logger()`*
