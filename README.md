@@ -62,7 +62,9 @@ log.fatal("Goodbye, crewl crewl world ...")
 
 
 ## :thumbsup: Compatibility
-This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well *(I would love to hear about usage on earlier versions)*.
+This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5.20 on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well.
+
+I would love to hear about usage on earlier versions and other operating systems.
 
 
 
@@ -72,8 +74,9 @@ This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5
     - You can use the "Clone or Download" button GitHub provides to download this entire repo
     - You can right click on this link, [`logger.m`](logger.m), and "**Save Link As ...**"
     - You can even go [`logger.m`](logger.m), and copy/paste all code into a new script called `logger.m`
-2. Create the logger object and store in any variable
+2. In your script, create the logger object and store it in a variable 
     - `log = logger()`
+    - *Please don't use `logger = logger()`*
 3. Use the assigned variable to use the logger
     - `log.info("This is a log message")`
     - `log.warning("This is a warning log message")`
@@ -85,9 +88,9 @@ This logger was created and tested on MATLAB R2018b and tailored to GNU Octave 5
 ## :boom: Usage
 
 ### Logging Within a Script
-Using the logger within the same script file is fairly straight forward.
+Using the logger within the same script file is fairly straightforward.
 ```matlab
-% Creating a logger object and assigning to a variable
+% Creating a logger object with default options and assigning to a variable
 log = logger()
 
 % Logging a message
@@ -132,7 +135,7 @@ If you want to use the same logger accross multiple different functions within t
     ```
 
 ### Logging Accross Files
-Logging accross different files is dones the exact same as logging accross differetn functions. See the previous section for the differetn ways and details.  For example this shows method 3:
+Logging accross different files is done the exact same as logging accross different functions. See the previous section for the different ways and details.  For example, this shows method 3:
 
 `firstFile.m`
 ```matlab
@@ -148,38 +151,38 @@ log.info("Logging a message inside this function with same logger")
 ```
 
 ## Using Multiple Loggers
-You can assign different loggers for different purposes. For example, let's say you would like one logger to log all things related to one part of the program like the data aquisition, while another logger logs all messages related to the graphical interface of the program. 
+You can assign different loggers for different purposes. For example, let's say you would like one logger to log all things related to one part of the program like maybe the data aquisition, while another logger logs all messages related to the graphical interface of the program. 
 
-In this case you can specify that each logger has its own message formatting and each logger saves its messages into seperate log files. In such a case you would also be able to seperately enable and disable each logger.
+In this case you can specify that each logger has its own message formatting and each logger saves its messages into seperate log files. In such a case you would also be able to seperately enable and disable each logger if needed.
 
 Here is a short example of using two loggers in the same script.
 
 ```matlab
-% Creating a default logger for program logs
-log_Default = logger()
-log_Default.show_date = true;
-log_Default.log_to_file = true;
+% Creating a default logger for general program logs
+logDefault = logger()
+logDefault.show_date = true;
+logDefault.log_to_file = true;
 
 % Creating a logger for any data acquisition (DAQ)
-log_DAQ = logger("DAQ")
-log_DAQ.show_time = true;
-log_DAQ.show_ms = true;
-log_DAQ.log_to_file = true;
+logDAQ = logger("DAQ")
+logDAQ.show_time = true;
+logDAQ.show_ms = true;
+logDAQ.log_to_file = true;
 
-log_Default.info("Program start ...")
+logDefault.info("Program start ...")
 
-log_DAQ.info("Starting data acquisition ..."")
+logDAQ.info("Starting data acquisition ..."")
 for i = 1 : 1000
     try
-        log_DAQ.info(sprintf("Measuring data point number %i", i)
+        logDAQ.info(sprintf("Measuring data point number %i", i)
         % Code for data acquisition (DAQ) here ..
     catch
-        log_DAQ.error("Failed to read data point")
+        logDAQ.error("Failed to read data point")
     end
 end
-log_DAQ.info("Data acquisition has completed")
+logDAQ.info("Data acquisition has completed")
 
-log_Default.info("Program ended")
+logDefault.info("Program ended")
 ```
 
 
@@ -197,9 +200,7 @@ You then in turn use the `log` variable to execute logging functions (ie. `log.w
 
 **IMPORTANT**: *Do not use `logger` as your variable (ie. `logger = logger()`).*
 
-Although all of the creation/constructor logger parameters are optional with default values, you may use any of these in the above creation command.  
-
-**NOTE**: *Note that any of these can be changed anytime after creation.*
+Although all of the creation/constructor logger parameters are optional with default values, you may use any of these constructor parameters in the above creation command. **Note that any of these can be changed anytime after creation.**
 
 | Parmeter | Name                      |      Type      | Optional | Default Value | Description                                        |
 |:--------:|---------------------------|:--------------:|:--------:|:-------------:|----------------------------------------------------|
@@ -272,10 +273,10 @@ log = logger("Badass Logger", true, true, false, false, true)
 
 
 ## :clock5: Notes on Performance and Speed
-- Understand that the speed per log may vary with the following logger settings.
+- Understand that the time duration per log may vary with the following logger settings.
     - *Logging formatting additions* - A logger that only shows the logger name will be very slightly faster than a logger displaying the name, date, time, and/or line number.
-    - *Logging to file* - Currently logging to file versus not logging to file will be slower.
-    - *Logging to command window* - Obviously if nothing is printed out, it will be very fast.
+    - *Logging to file* - Currently logging to file is slower than only loggering to the command window.
+    - *Logging to command window* - Obviously if nothing is printed out, it will be faster.
 - Remember that there is a `.time_the_logger()` method that you can use to measure the current logger settings and compare them to a simple `frpintf()` command.
 - Using simple "disp()" and "fprintf()" is faster than using this logger. However logger gives you lots of convenient ability and flexibility in return.
 
