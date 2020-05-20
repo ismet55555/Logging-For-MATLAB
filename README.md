@@ -94,11 +94,11 @@ TODO ...
 
 
 ### Changing Default Log Level
-Default log level means the lowest log level which the logger will display and safe to file. For example, if the default log  a logger is set to 3 (warning), that logger will only print out and safe logs that are at level 3 or above.
+Default log level means the lowest log level which the logger will display and safe to file. For example, if the default log level of a logger is set to 3 (warning), that logger will only print out and safe logs that are at level 3 (warning) or above.
 
-Changing the default log level comes in handy when, for example, you create a few `DEBUG` (level 1) level logs to troubleshoot your code and would like to turn debug messages on and off depending if you are troubleshooting or not. This turning on and off can be easily done by setting the log level from 1 (debug) to 2 (into) or vice versa.
+Changing the default log level comes in handy when, for example, you create a few debug (level 1) level logs to troubleshoot your code in key places and would like to turn these debug messages on and off depending if you are troubleshooting or not. This turning on and off can be easily done by setting the log level from 1 (debug) to 2 (info) or vice versa.
 
-You can change this default base level by using the `.default_level` logger property, which takes a positive integer. Note that you can display all log levels and see the default log level using the `.get_logger_levels()` method.
+You can change default log level by using the `.default_level` logger property, which takes a positive integer. Note that you can display all log levels and see the default log level using the `.get_logger_levels()` method.
 
 The following is an example of chanign a default log level for a logger.
 ```matlab
@@ -229,7 +229,7 @@ logDefault.info("Program ended")
 
 ## :blue_book: Reference Docummentation
 ## Log Levels
-The following are the only available log levels for the logger. Each integer cooresponds to a log level.
+The following are the only available log levels for the logger. Each integer cooresponds to a log level. You can display all log levels and see the default log level using the `.get_logger_levels()` method.
 
 TODO... table
 
