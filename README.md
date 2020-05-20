@@ -25,6 +25,7 @@ Logger was inspired by phython's `logging` package.
 * [Compatibility](#thumbsup-compatibility)
 * [Installing and Setup](#rocket-installing-and-setup)
 * [Usage](#boom-usage)
+    * [Changing Default Log Level](#changing-default-log-level)
     * [Logging Within a Script](#logging-within-a-script)
     * [Logging Accross Functions](#logging-accross-functions)
     * [Logging Accross Files](#logging-accross-files)
@@ -87,6 +88,41 @@ I would love to hear about usage on earlier versions and other operating systems
 
 
 ## :boom: Usage
+
+## Logging
+TODO ...
+
+
+### Changing Default Log Level
+Default log level means the lowest log level which the logger will display and safe to file. For example, if the default log  a logger is set to 3 (warning), that logger will only print out and safe logs that are at level 3 or above.
+
+Changing the default log level comes in handy when, for example, you create a few `DEBUG` (level 1) level logs to troubleshoot your code and would like to turn debug messages on and off depending if you are troubleshooting or not. This turning on and off can be easily done by setting the log level from 1 (debug) to 2 (into) or vice versa.
+
+You can change this default base level by using the `.default_level` logger property, which takes a positive integer. Note that you can display all log levels and see the default log level using the `.get_logger_levels()` method.
+
+The following is an example of chanign a default log level for a logger.
+```matlab
+% Creating the logger
+log = logger()
+
+% Logging a info and warning log
+log.info("This is an info log message")
+log.warning("This is a warning log message")
+
+% Changing the default log level for logger to level 3 (warning)
+log.default_level = 3 
+
+% Logging the same info and warning log
+log.info("This is an info log message")      % <-- Will not be displayed
+log.warning("This is a warning log message")
+```
+**Command Window Output**
+```
+[INFO    ] : This is an info log message
+[WARNING ] : This is a warning log message
+[WARNING ] : This is a warning log message
+```
+
 
 ### Logging Within a Script
 Using the logger within the same script file is fairly straightforward.
@@ -192,6 +228,12 @@ logDefault.info("Program ended")
 
 
 ## :blue_book: Reference Docummentation
+## Log Levels
+The following are the only available log levels for the logger. Each integer cooresponds to a log level.
+
+TODO... table
+
+
 ### Creation
 The following command creats a logger object that is used to log messages
 ```matlab
