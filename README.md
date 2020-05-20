@@ -10,7 +10,7 @@ Logger ([`logger.m`](logger.m)) provides a lot of functionalities and flexibilit
 * Logging accross multiple files
 * and more ...
 
-Logger was inspired by phython's `logging` package.
+Logger was inspired by phython's `logging` module.
 
 
 ### Very Basically ...
@@ -21,6 +21,7 @@ Logger was inspired by phython's `logging` package.
 
 ## :eyeglasses: Overview
 
+* [Quick Start](#fast_forward-quick-start)
 * [Compatibility](#thumbsup-compatibility)
     * [Minimum System Requirements](#minimum-system-requirements)
     * [Verified Platforms](#verified-platforms)
@@ -269,7 +270,12 @@ log = logger("Badass Logger", true, true, false, false, true)
 
 ---
 ## :clock5: A Note on Performance and Speed
-TODO ...
+- Understand that the speed per log may vary with the following logger settings.
+    - *Logging formatting additions* - A logger that only shows the logger name will be very slightly faster than a logger displaying the name, date, time, and/or line number.
+    - *Logging to file* - Currently logging to file versus not logging to file will be slower.
+    - *Logging to command window* - Obviously if nothing is printed out, it will be very fast.
+- Remember that there is a `.time_the_logger()` method that you can use to measure the current logger settings and compare them to a simple `frpintf()` command.
+- Using simple "disp()" and "fprintf()" is faster than using this logger. However logger gives you lots of convenient ability and flexibility in return.
 
 ---
 ## :bust_in_silhouette: Author
@@ -277,4 +283,4 @@ TODO ...
 
 
 ## Licence
-This project is licensed under the MIT License (FIXXXX MEE) - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache 2.0 - Please see the [LICENSE.md](LICENSE.md) file for details.
