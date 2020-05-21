@@ -1,6 +1,6 @@
 <h1 align="center">Logger For MATLAB/Octave :notebook:</h1>
 
-If you have ever wanted a nice message logger for your MATLAB or GNU Octave scripts, well my friend, you may be in luck!
+If you have ever wanted a nice message logger for your MATLAB scripts and programs, well my friend, you may be in luck!
 
 Logger ([`logger.m`](logger.m)) provides a lot of functionalities and flexibility which regular `fprintf()` or `disp()` commands cannot. Such added funcitonalities include: 
 * Specifiying log message urgency levels
