@@ -25,12 +25,14 @@ Logger was inspired by phython's `logging` package.
 * [Compatibility](#thumbsup-compatibility)
 * [Installing and Setup](#rocket-installing-and-setup)
 * [Usage](#boom-usage)
+    * [Logging](#logging)
     * [Changing Default Log Level](#changing-default-log-level)
     * [Logging Within a Script](#logging-within-a-script)
     * [Logging Accross Functions](#logging-accross-functions)
     * [Logging Accross Files](#logging-accross-files)
     * [Using Multiple Loggers](#using-multiple-loggers)
 * [Reference Docummentation](#blue_book-reference-docummentation)
+    * [Log Levels](#log-levels)
     * [Creation](#creation)
     * [Methods](#methods)
     * [Properties](#properties)
@@ -89,8 +91,53 @@ I would love to hear about usage on earlier versions and other operating systems
 
 ## :boom: Usage
 
-## Logging
-TODO ...
+### Logging
+Obviously logging messages is the most fundemental thing to this logger thing. There are two different ways to log a message with a specific log level.
+1. Use the predefined logging methods that coorespond to the specific logging level
+    ```matlab
+    % Create a logger
+    log = logger();
+    log.default_level = 1;
+    
+    % Log messages with different log levels
+    log.debug("This is a debug level message");
+    log.info("This is a info level message");
+    log.warning("This is a warning level message");
+    log.error("This is a error level message");
+    log.critical("This is a critical level message");
+    log.fatal("This is a fatal level message");
+    ```
+    **Command Window Output**
+    ```
+    [INFO    ] : This is a info level message
+    [WARNING ] : This is a warning level message
+    [ERROR   ] : This is a error level message
+    [CRITICAL] : This is a critical level message
+    [FATAL   ] : This is a fatal level message
+    ```
+
+2. Use the `.log()` method to specify a log level using an integer instead of the name of the log level
+    ```matlab
+    % Create a logger
+    log = logger();
+    log.default_level = 1;
+    
+    % Log messages with different log levels
+    log.log(1, "This is a debug level message");
+    log.log(2, "This is a info level message");
+    log.log(3, "This is a warning level message");
+    log.log(4, "This is a error level message");
+    log.log(5, "This is a critical level message");
+    log.log(6, "This is a fatal level message");
+    ```
+    **Command Window Output**
+    ```
+    [INFO    ] : This is a info level message
+    [WARNING ] : This is a warning level message
+    [ERROR   ] : This is a error level message
+    [CRITICAL] : This is a critical level message
+    [FATAL   ] : This is a fatal level message
+    ```
 
 
 ### Changing Default Log Level
@@ -103,18 +150,18 @@ You can change default log level by using the `.default_level` logger property, 
 The following is an example of chanign a default log level for a logger.
 ```matlab
 % Creating the logger
-log = logger()
+log = logger();
 
 % Logging a info and warning log
-log.info("This is an info log message")
-log.warning("This is a warning log message")
+log.info("This is an info log message");
+log.warning("This is a warning log message");
 
-% Changing the default log level for logger to level 3 (warning)
-log.default_level = 3 
+% Changing the default log level for logger to level 3 (warning);
+log.default_level = 3;
 
 % Logging the same info and warning log
-log.info("This is an info log message")      % <-- Will not be displayed
-log.warning("This is a warning log message")
+log.info("This is an info log message");      % <-- Will not be displayed
+log.warning("This is a warning log message");
 ```
 **Command Window Output**
 ```
@@ -128,10 +175,10 @@ log.warning("This is a warning log message")
 Using the logger within the same script file is fairly straightforward.
 ```matlab
 % Creating a logger object with default options and assigning to a variable
-log = logger()
+log = logger();
 
 % Logging a message
-log.info("This a logging message")
+log.info("This a logging message");
 ```
 
 
@@ -139,35 +186,35 @@ log.info("This a logging message")
 If you want to use the same logger accross multiple different functions within the same script, you can do as follows:
 1. Pass the logger object variable into the function
     ```matlab
-    log = LOGGER()
-    log.info("This is a logging message")
-    someFunction(log)
+    log = logger();
+    log.info("This is a logging message");
+    someFunction(log);
     
     function someFunction(log)
-        log.info("Logging a message inside this function with same logger")
+        log.info("Logging a message inside this function with same logger");
     end
     ```
 2. Declare the logger object variable a `global` variable
     ```matlab
     global log
-    log = logger()
-    log.info("This is a logging message")
-    someFunction()
+    log = logger();
+    log.info("This is a logging message");
+    someFunction();
     
     function someFunction()
-        global log
-        log.info("Logging a message inside this function with sameN logger")
+        global log;
+        log.info("Logging a message inside this function with sameN logger");
     end
     ```
 3. Create another logger with the exact same logger name. The logger is smart enough to combine duplicate logger names into one single logger group.
     ```matlab
-    log = logger("Nice Logger")
-    log.info("This is a logging message")
-    someFunction()
+    log = logger("Nice Logger");
+    log.info("This is a logging message");
+    someFunction();
     
     function someFunction()
-        log = logger("Nice Logger")
-        log.info("Logging a message inside this function with same logger")
+        log = logger("Nice Logger");
+        log.info("Logging a message inside this function with same logger");
     end
     ```
 
@@ -176,15 +223,15 @@ Logging accross different files is done the exact same as logging accross differ
 
 `firstFile.m`
 ```matlab
-log = logger("Nice Logger")
-log.info("This a logging message")
-secondFile
+log = logger("Nice Logger");
+log.info("This a logging message");
+secondFile;
 ```
 
 `secondFile.m`
 ```matlab
-log = logger("Nice Logger")
-log.info("Logging a message inside this function with same logger")
+log = logger("Nice Logger");
+log.info("Logging a message inside this function with same logger");
 ```
 
 ## Using Multiple Loggers
@@ -196,30 +243,30 @@ Here is a short example of using two loggers in the same script.
 
 ```matlab
 % Creating a default logger for general program logs
-logDefault = logger()
+logDefault = logger();
 logDefault.show_date = true;
 logDefault.log_to_file = true;
 
 % Creating a logger for any data acquisition (DAQ)
-logDAQ = logger("DAQ")
+logDAQ = logger("DAQ");
 logDAQ.show_time = true;
 logDAQ.show_ms = true;
 logDAQ.log_to_file = true;
 
-logDefault.info("Program start ...")
+logDefault.info("Program start ...");
 
 logDAQ.info("Starting data acquisition ..."")
 for i = 1 : 1000
     try
-        logDAQ.info(sprintf("Measuring data point number %i", i)
+        logDAQ.info(sprintf("Measuring data point number %i", i);
         % Code for data acquisition (DAQ) here ..
     catch
-        logDAQ.error("Failed to read data point")
+        logDAQ.error("Failed to read data point");
     end
 end
-logDAQ.info("Data acquisition has completed")
+logDAQ.info("Data acquisition has completed");
 
-logDefault.info("Program ended")
+logDefault.info("Program ended");
 ```
 
 
@@ -231,7 +278,14 @@ logDefault.info("Program ended")
 ## Log Levels
 The following are the only available log levels for the logger. Each integer cooresponds to a log level. You can display all log levels and see the default log level using the `.get_logger_levels()` method.
 
-TODO... table
+| Level | Name       | Typical Usage                                                    |
+|-------|------------|------------------------------------------------------------------|
+| 1     | `DEBUG`    | Diagnostic and fine-grained troubleshooting                      |
+| 2     | `INFO`     | Normal program behavior                                          |
+| 3     | `WARNING`  | Notification of potential error, but program is still ok         |
+| 4     | `ERROR`    | Serious issue, reguires attention, may allow program to continue |
+| 5     | `CRITICAL` | Issue will lead to a termination of the program                  |
+| 6     | `FATAL`    | Catastrophic, severe, irrecoverable situation                    |
 
 
 ### Creation
