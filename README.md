@@ -275,7 +275,7 @@ logDefault.info("Program ended");
 
 
 ## :blue_book: Reference Docummentation
-## Log Levels
+### Log Levels
 The following are the only available log levels for the logger. Each integer cooresponds to a log level. You can display all log levels and see the default log level using the `.get_logger_levels()` method.
 
 | Level | Name       | Typical Usage                                                    |
