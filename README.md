@@ -76,7 +76,6 @@ I would love to hear about usage on earlier versions and other operating systems
 1. Download/copy the [`logger.m`](logger.m) file into your working directory
     - **Git:** Use the ol' git to clone the repo onto your computer
     - **Download:** Use the "**Clone or Download**" button GitHub provides to download this entire repo as a .zip file
-    - **Save As:** Right click on this link, [`logger.m`](logger.m), and "**Save Link As ...**"
     - **Copy/Paste:** Visit [`logger.m`](logger.m), and copy/paste all code into a new .m file script called `logger.m`
 2. In your script, create the logger object and store it in a variable 
     - `log = logger()`
