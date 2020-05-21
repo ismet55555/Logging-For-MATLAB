@@ -1,4 +1,4 @@
-<h1 align="center">Logger For MATLAB/Octave :notebook:</h1>
+<h1 align="center">Logger For MATLAB :notebook:</h1>
 
 If you have ever wanted a nice message logger for your MATLAB scripts and programs, well my friend, you may be in luck!
 
