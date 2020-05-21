@@ -11,13 +11,15 @@ classdef (ConstructOnLoad = false) logger < handle
     %
     %
     %   CREATION
-    %         log = LOGGER(show_date, ...               (boolean - Optional - Default Value: false    )
+    %         log = LOGGER(logger_name, ...             (string  - Optional - Default Value: "Default")
+    %                      show_date, ...               (boolean - Optional - Default Value: false    )
     %                      show_time, ...               (boolean - Optional - Default Value: false    )
     %                      show_logging_filename, ...   (boolean - Optional - Default Value: false    )
     %                      show_logging_function, ...   (boolean - Optional - Default Value: false    )
     %                      show_logging_linenumber, ... (boolean - Optional - Default Value: false    )
     %                      log_filename)                (string  - Optional - Default Value: false    )
     %
+    %         logger_name             - Name the logger (useful when using seperate loggers)
     %         show_date               - Show the date in a log message
     %         show_time               - Show the current time in the log message
     %         show_logging_filename   - Show the file where the log message was made
@@ -945,3 +947,4 @@ classdef (ConstructOnLoad = false) logger < handle
         end
     end
 end
+
