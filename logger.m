@@ -11,15 +11,13 @@ classdef (ConstructOnLoad = false) logger < handle
     %
     %
     %   CREATION
-    %         log = LOGGER(logger_name, ...             (string  - Optional - Default Value: "Default")
-    %                      show_date, ...               (boolean - Optional - Default Value: false    )
+    %         log = LOGGER(show_date, ...               (boolean - Optional - Default Value: false    )
     %                      show_time, ...               (boolean - Optional - Default Value: false    )
     %                      show_logging_filename, ...   (boolean - Optional - Default Value: false    )
     %                      show_logging_function, ...   (boolean - Optional - Default Value: false    )
     %                      show_logging_linenumber, ... (boolean - Optional - Default Value: false    )
     %                      log_filename)                (string  - Optional - Default Value: false    )
     %
-    %         logger_name             - Name the logger (useful when using seperate loggers)
     %         show_date               - Show the date in a log message
     %         show_time               - Show the current time in the log message
     %         show_logging_filename   - Show the file where the log message was made
@@ -30,8 +28,8 @@ classdef (ConstructOnLoad = false) logger < handle
     %
     %
     %   METHODS
-    %         LOGGER.get_logger_levels()  -  List the available logging levels
-    %         LOGGER.time_the_logger(n)   -  Perform a performance test for the logger, logging n number of logs
+    %         LOGGER.get_log_levels()     -  List the available logging levels
+    %         LOGGER.time_the_logger(n)   -  Performance/Timing test for the logger, logging n number of logs
     %
     %         LOGGER.debug()              -  Log a debug level message
     %         LOGGER.info()               -  Log a info level message
@@ -54,9 +52,9 @@ classdef (ConstructOnLoad = false) logger < handle
     %         LOGGER.show_logger_name        - (boolean) - Show the name of the logger in the log message
     %         LOGGER.show_date               - (boolean) - Show the date in a log message
     %         LOGGER.show_time               - (boolean) - Show the current time in the log message
-    %         LOGGER.show_ms                 - (boolean) - Show the file where the log message was made
-    %         LOGGER.show_logging_filename   - (boolean) - Show the function where the log message was made
-    %         LOGGER.show_logging_function   - (boolean) - Show the linenumber where the log message was made
+    %         LOGGER.show_ms                 - (boolean) - Show milliseconds in log message
+    %         LOGGER.show_logging_filename   - (boolean) - Show the file name where the log message was logged
+    %         LOGGER.show_logging_function   - (boolean) - Show the function where the log message was logged
     %         LOGGER.show_logging_linenumber - (boolean) - Show the linenumber where the log message was made
     %                 
     %         LOGGER.log_to_command_window   - (boolean) - Show the log messages command window
@@ -446,7 +444,7 @@ classdef (ConstructOnLoad = false) logger < handle
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         
-        function get_logger_levels(obj)
+        function get_log_levels(obj)
             fprintf('\n')
             fprintf('The following are the avilable logger logging levels:\n\n')
             fprintf("  Level  |  Label\n")
@@ -518,7 +516,7 @@ classdef (ConstructOnLoad = false) logger < handle
         end
 
         function log(obj, level_index, message_text)
-            if obj.enabled
+            if obj.default_level <= level_index && obj.enabled
                 if (level_index > length(obj.log_level_labels) || level_index < 1)
                    fprintf('[LOGGER] : %s\n', message_text)
                    fprintf(2, '[LOGGER] : Level number (%i) is not within vaild range (Range: 1-%i)\n', ...
