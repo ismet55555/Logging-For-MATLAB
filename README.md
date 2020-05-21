@@ -14,7 +14,7 @@ Logger was inspired by phython's `logging` package.
 
 
 ### Very Basically ...
-1. Every time you want to log/show/save a message in the command window or in a file, you can do that with this logger.
+1. Every time you want to log/show/save a message in the command window or in a file, you can do that with this message logger.
 2. The logger can display a message with different levels such as `debug`, `error`, or `fatal`.
 3. There are many other things this logger can do, that a simple `fprintf()` command cannot.
 
@@ -51,9 +51,9 @@ log.show_time = true;
 log.show_ms = true;
 
 % Logging some Messages
-log.info("Hello sweet sweet world!")
+log.info("Hello sweet, sweet world!")
 log.warning("Hey watch out! A bus!")
-log.fatal("Goodbye, crewl crewl world ...")
+log.fatal("Goodbye, crewl, crewl world ...")
 ```
 **Command Window Output**
 ```
@@ -283,7 +283,7 @@ The following are the only available log levels for the logger. Each integer coo
 | 1     | `DEBUG`    | Diagnostic and fine-grained troubleshooting                      |
 | 2     | `INFO`     | Normal program behavior                                          |
 | 3     | `WARNING`  | Notification of potential error, but program is still ok         |
-| 4     | `ERROR`    | Serious issue, reguires attention, may allow program to continue |
+| 4     | `ERROR`    | Serious issue, requires attention, may allow program to continue |
 | 5     | `CRITICAL` | Issue will lead to a termination of the program                  |
 | 6     | `FATAL`    | Catastrophic, severe, irrecoverable situation                    |
 
