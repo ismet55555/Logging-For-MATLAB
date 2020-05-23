@@ -160,6 +160,9 @@ classdef (ConstructOnLoad = false) logger < handle
     %       Time logger performance:            log.time_the_logger(10000)
     
 
+ 
+
+   
     properties (SetAccess = public)
         description   = "This is a logger object. Feel free to change this description!";
         default_level = 2;
