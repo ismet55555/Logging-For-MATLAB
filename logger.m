@@ -160,6 +160,9 @@ classdef (ConstructOnLoad = false) logger < handle
     %       Time logger performance:            log.time_the_logger(10000)
     
 
+ 
+
+   
     properties (SetAccess = public)
         description   = "This is a logger object. Feel free to change this description!";
         default_level = 2;
@@ -188,7 +191,7 @@ classdef (ConstructOnLoad = false) logger < handle
     properties (SetAccess = protected, Hidden = true)
         pause_sync_notifier   = false;
         
-        name                 = "Default";
+        name                 = 'Default';
         object_ID            = randi(999999999);
         
         object_creation_file     = []
@@ -256,7 +259,7 @@ classdef (ConstructOnLoad = false) logger < handle
             % Check number of input arguments
             switch nargin
                 case 1
-                    obj.name = logger_name;
+                    obj.name = char(logger_name);
                 case 2
                     obj.name      = logger_name;
                     obj.show_date = show_date;
@@ -265,25 +268,25 @@ classdef (ConstructOnLoad = false) logger < handle
                     obj.show_date = show_date;
                     obj.show_time = show_time;
                 case 4
-                    obj.name                  = logger_name;
+                    obj.name                  = char(logger_name);
                     obj.show_date             = show_date;
                     obj.show_time             = show_time;
                     obj.show_logging_filename = show_logging_filename;
                 case 5
-                    obj.name                  = logger_name;
+                    obj.name                  = char(logger_name);
                     obj.show_date             = show_date;
                     obj.show_time             = show_time;
                     obj.show_logging_filename = show_logging_filename;
                     obj.show_logging_function = show_logging_function;
                 case 6
-                    obj.name                    = logger_name;
+                    obj.name                    = char(logger_name);
                     obj.show_date               = show_date;
                     obj.show_time               = show_time;
                     obj.show_logging_filename   = show_logging_filename;
                     obj.show_logging_function   = show_logging_function;
                     obj.show_logging_linenumber = show_logging_linenumber;
                 case 7
-                    obj.name                    = logger_name;
+                    obj.name                    = char(logger_name);
                     obj.show_date               = show_date;
                     obj.show_time               = show_time;
                     obj.show_logging_filename   = show_logging_filename;
@@ -298,9 +301,11 @@ classdef (ConstructOnLoad = false) logger < handle
             obj.object_creation_file     = string(caller_stack(2).file);
             obj.object_creation_function = string(caller_stack(2).name);
             
-            % Rename the log file (TODO: MOVE TO LOG MANAGER!)
-            filename = strrep(obj.name, " ", "_");
-            obj.log_filename  = strcat(filename, ".log");           
+            % Rename the log file
+            if not(exist('log_filename','var'))
+                log_filename = strrep(obj.name, " ", "_");
+            end
+            obj.log_filename  = strcat(log_filename, ".log");           
             
             % Add the logger object to the logger manager list
             % If the same name logger exists, sync it to existing ones
@@ -776,7 +781,7 @@ classdef (ConstructOnLoad = false) logger < handle
                     
                     for i = 1 : length(loggers)
                         % Check if there is a match to exiting logger group name
-                        if lower(logger_keys{i}) == lower(logger_obj.name)
+                        if strcmp(string(logger_keys{i}), string(logger_obj.name))
                             % Disable sync notifier for object
                             logger_obj.pause_sync_notifier = true;
                             
@@ -831,7 +836,7 @@ classdef (ConstructOnLoad = false) logger < handle
                         loggers_for_group = loggers(logger_keys{i});
                         
                         % Check if logger name is in existing logger group name
-                        if lower(logger_keys{i}) == lower(logger_obj.name)                         
+                        if strcmp(string(logger_keys{i}), string(logger_obj.name))
                             % Duplicate the passed logger to all in group
                             for j = 1 : length(loggers_for_group)
                                 % Disable sync notifier for object
