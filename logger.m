@@ -256,6 +256,13 @@ classdef (ConstructOnLoad = false) logger < handle
         % Object constructor for logger object
         % This method runs when the object is being created into memory
                           
+            p = inputParser;
+            % TODO:
+            % https://www.mathworks.com/help/matlab/matlab_prog/parse-function-inputs.html
+            % https://people.umass.edu/whopper/posts/better-matlab-functions-with-the-inputparser-class/
+            %
+            % Probably want addParameter
+        
             % Check number of input arguments
             switch nargin
                 case 1

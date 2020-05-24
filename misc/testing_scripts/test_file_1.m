@@ -12,7 +12,7 @@ addpath('../../.')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-log = logger();
+log = logger("First", true, true, true, false, true, "something");
 
 log.default_level    = 1;
 log.show_logger_name = true;
@@ -26,7 +26,7 @@ log.show_logging_linenumber = true;
 
 log.info("OK");
 log.warning("OK");
-log.log(3, "OK");
+log.log(6, "OK");
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
