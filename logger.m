@@ -180,7 +180,7 @@ classdef (ConstructOnLoad = false) logger < handle
         enabled               = true;
         
         log_directory = pwd;
-        log_filename  = "Filename_TBD.log";  
+        log_filename  = 'Filename_TBD.log';  
     end
     
     
@@ -305,7 +305,7 @@ classdef (ConstructOnLoad = false) logger < handle
             if not(exist('log_filename','var'))
                 log_filename = strrep(obj.name, " ", "_");
             end
-            obj.log_filename  = strcat(log_filename, ".log");           
+            obj.log_filename  = char(strcat(log_filename, ".log"));
             
             % Add the logger object to the logger manager list
             % If the same name logger exists, sync it to existing ones
@@ -334,7 +334,7 @@ classdef (ConstructOnLoad = false) logger < handle
 
         function set.description(obj, value)
             obj.verify_type(obj, value, ["string"; "char"]);
-            obj.description = value;            % Set the variable
+            obj.description = char(value);            % Set the variable
             if ~obj.pause_sync_notifier
                 notify(obj, 'SyncLoggers');         % Trigger a "SyncLoggers" event 
             end
@@ -433,7 +433,7 @@ classdef (ConstructOnLoad = false) logger < handle
         
         function set.log_directory(obj, value)    
             obj.verify_type(obj, value, ["string"; "char"]);
-            obj.log_directory = value;          % Set the variable
+            obj.log_directory = char(value);          % Set the variable
             if ~obj.pause_sync_notifier
                 notify(obj, 'SyncLoggers');         % Trigger a "SyncLoggers" event 
             end
@@ -441,7 +441,7 @@ classdef (ConstructOnLoad = false) logger < handle
         
         function set.log_filename(obj, value) 
             obj.verify_type(obj, value, ["string"; "char"]);
-            obj.log_filename = value;           % Set the variable
+            obj.log_filename = char(value);           % Set the variable
             if ~obj.pause_sync_notifier
                 notify(obj, 'SyncLoggers');         % Trigger a "SyncLoggers" event 
             end
@@ -480,8 +480,8 @@ classdef (ConstructOnLoad = false) logger < handle
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         function delete_log_file(obj)
-           if exist(strcat(obj.log_directory, "\", obj.log_filename), 'file')
-               delete(strcat(obj.log_directory, "\", obj.log_filename));
+           if exist(fullfile(obj.log_directory, obj.log_filename), 'file')
+               delete(fullfile(obj.log_directory, obj.log_filename));
            end
         end
         function clear_log_file(obj)
@@ -740,18 +740,18 @@ classdef (ConstructOnLoad = false) logger < handle
         
         function create_log_file(obj)
             % Create the log file
-            f = fopen(strcat(obj.log_directory, "\", obj.log_filename), 'w');
+            f = fopen(fullfile(obj.log_directory, obj.log_filename), 'w');
             fclose(f); 
         end
         
         function append_log_file(obj, log_message)
            % Write to log file
-           if ~exist(strcat(obj.log_directory, "\", obj.log_filename), 'file')
+           if ~exist(fullfile(obj.log_directory, obj.log_filename), 'file')
                 obj.create_log_file()
            end
            
            % Open a file, write video data, close file
-           f = fopen(strcat(obj.log_directory, "\", obj.log_filename), 'a');
+           f = fopen(fullfile(obj.log_directory, obj.log_filename), 'a');
            fprintf(f, log_message);
            fclose(f); 
         end
