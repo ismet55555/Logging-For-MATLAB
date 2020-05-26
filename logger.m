@@ -191,8 +191,11 @@ classdef (ConstructOnLoad = false) logger < handle
     properties (SetAccess = protected, Hidden = true)
         pause_sync_notifier   = false;
         
-        name                 = 'Default';
-        object_ID            = randi(999999999);
+        name        = 'Default';
+        object_ID   = randi(999999999);
+        
+        log_file_id      = -1;
+        file_close_timer = [];
         
         object_creation_file     = []
         object_creation_function = []  % TODO:  Also check function in log manager
@@ -235,12 +238,13 @@ classdef (ConstructOnLoad = false) logger < handle
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
+    
     % Events that can be triggered by object
     events (ListenAccess = protected, NotifyAccess = protected, Hidden = true)
        SyncLoggers 
     end
     
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -314,17 +318,40 @@ classdef (ConstructOnLoad = false) logger < handle
             % Craete a listener for a logger sync event
             % When "SyncLoggers" event is triggered, "sync_loggers()" is exectued
             addlistener(obj, 'SyncLoggers', @sync_loggers);
+            
+            % Creating a timer to repeatatly close all open files
+            % This is a workaround for keeping the files open
+            t               = timer;
+            t.Name          = num2str(obj.object_ID);
+            t.StartDelay    = 2;
+            t.Period        = 2;
+            t.ExecutionMode = 'fixedRate';
+            t.TimerFcn = @(~, thisEvent)obj.close_all_open_log_files();
+            start(t)
         end
         
         
+
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
 
-        function delete(obj, print_out)
+        function delete(obj)
             % Object destructor for logger object
             % This method runs when the object is being deleted from memory
-            if print_out
-                obj.fatal(sprintf("Deleting logger '%s' ...", obj.name));
+            
+            % Stopping the timer
+            num2str(obj.object_ID)
+            timers = timerfindall('Tag', num2str(obj.object_ID))
+            delete(timers)
+            
+            % Close all opened files
+            disp('DELETION: Closing files')
+            % Get all the ids for open files
+            open_file_ids = fopen('all');
+            
+            % Close all open files
+            for file_id = 1 : length(open_file_ids)
+                fclose(open_file_ids(file_id));
             end
         end
         
@@ -480,11 +507,19 @@ classdef (ConstructOnLoad = false) logger < handle
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         function delete_log_file(obj)
+           % if the file is open close it
+           if obj.log_file_id > 0
+              fclose(obj.log_file_id); 
+              obj.log_file_id = -1;
+           end
+            % Check if the file exists
            if exist(fullfile(obj.log_directory, obj.log_filename), 'file')
                delete(fullfile(obj.log_directory, obj.log_filename));
            end
         end
+        
         function clear_log_file(obj)
+            % Clearing the current log file
             obj.create_log_file();
         end
         
@@ -553,10 +588,16 @@ classdef (ConstructOnLoad = false) logger < handle
             temp_log_filename = obj.log_filename;
             obj.log_filename = "logger_timing_test.log";
             
+            % Close the open file
+            if obj.log_file_id > 0
+               fclose(obj.log_file_id);
+               obj.log_file_id = -1;
+            end
+            
             % Creating the log file
             obj.create_log_file();
             
-            % Measuring fprintf command speed
+            % Measuring "fprintf" command speed
             tic
             for i = 1 : number_of_messages
                 fprintf('Testing "fprintf" speed ...\n');
@@ -634,7 +675,14 @@ classdef (ConstructOnLoad = false) logger < handle
                     obj.caller_function   = string(caller_stack(i).name);
                     obj.caller_linenumber = string(caller_stack(i).line);
                end
-            end       
+            end
+            
+            % Check if log was send from command line
+            if strcmp(obj.caller_filename, "logger.m")
+                obj.caller_filename   = "COMMAND";
+                obj.caller_function   = "COMMAND";
+                obj.caller_linenumber = "-";
+            end
         end
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -739,21 +787,33 @@ classdef (ConstructOnLoad = false) logger < handle
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         function create_log_file(obj)
-            % Create the log file
-            f = fopen(fullfile(obj.log_directory, obj.log_filename), 'w');
-            fclose(f); 
+            % Create the log file and close it
+            
+            % If log file is open, close it
+            if obj.log_file_id > 0
+                fclose(obj.log_file_id);
+                obj.log_file_id = -1;
+            end
+
+            % Create or clear file
+            file_id = fopen(fullfile(obj.log_directory, obj.log_filename), 'w');
+            fclose(file_id);
         end
         
         function append_log_file(obj, log_message)
-           % Write to log file
+           % If the log file does not exist, create it
            if ~exist(fullfile(obj.log_directory, obj.log_filename), 'file')
-                obj.create_log_file()
+                obj.create_log_file();
            end
            
-           % Open a file, write video data, close file
-           f = fopen(fullfile(obj.log_directory, obj.log_filename), 'a');
-           fprintf(f, log_message);
-           fclose(f); 
+           % If the log file is not open, open it for append
+           if obj.log_file_id == -1
+               obj.log_file_id = fopen(fullfile(obj.log_directory, obj.log_filename), 'a');
+           end
+           
+           % Write the message to file
+           % NOTE: MATLAB automatically flushes output after write
+           fprintf(obj.log_file_id, log_message);
         end
     end
 
@@ -826,7 +886,7 @@ classdef (ConstructOnLoad = false) logger < handle
                         %   TODO:  Also check function!!!
 
                         % Delete the object entirely by calling its destructor
-                        logger_obj.delete(false)
+                        logger_obj.delete()
                     end
                     
                 elseif operation == "sync"
@@ -923,6 +983,19 @@ classdef (ConstructOnLoad = false) logger < handle
                 end
             else
                 error("Too many arguments passed");
+            end
+        end
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        function close_all_open_log_files()
+            disp("Closig all files ...")
+            % Get all the ids for open files
+            open_file_ids = fopen('all')
+            
+            % Close all open files
+            for file_id = 1 : length(open_file_ids)
+                fclose(open_file_ids(file_id));
             end
         end
         
