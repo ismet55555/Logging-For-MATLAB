@@ -2,7 +2,7 @@
 
 If you have ever wanted a nice message logger for your MATLAB scripts and programs, well my friend, you may be in luck!
 
-Logger ([`logger.m`](logger.m)) provides a lot of functionalities and flexibility which regular `fprintf()` or `disp()` commands cannot. Such added funcitonalities include: 
+Logger ([`logger.m`](logger.m)) provides a lot of functionalities and flexibility which regular `fprintf()` or `disp()` commands cannot. Such added functionalities include:
 * Specifiying log message urgency levels
 * Log message formatting (red color, bold font)
 * Setting a default urgency level
@@ -65,7 +65,7 @@ log.fatal("Goodbye, crewl, crewl world ...")
 
 
 ## :thumbsup: Compatibility
-This logger was created and tested on MATLAB R2017b and R2018b on a Windows 10 operating system. Although this logger was created within those software versions and operating system, it may work in other environments as well.
+This logger was created and tested on MATLAB R2017b and R2018b on a Windows 10 operating system. Although this logger was created within those software versions and operating systems, it may work in other environments as well.
 
 I would love to hear about usage on earlier or later MATLAB versions and other operating systems.
 
@@ -92,7 +92,7 @@ I would love to hear about usage on earlier or later MATLAB versions and other o
 
 ### Logging
 Obviously logging messages is the most fundemental thing to this logger thing. There are two different ways to log a message with a specific log level.
-1. Use the predefined logging methods that coorespond to the specific logging level
+1. Use the predefined logging methods that correspond to the specific logging level
     ```matlab
     % Create a logger
     log = logger();
@@ -140,13 +140,13 @@ Obviously logging messages is the most fundemental thing to this logger thing. T
 
 
 ### Changing Default Log Level
-Default log level means the lowest log level which the logger will display and safe to file. For example, if the default log level of a logger is set to 3 (warning), that logger will only print out and safe logs that are at level 3 (warning) or above.
+Default log level means the lowest log level which the logger will display and save to file. For example, if the default log level of a logger is set to 3 (warning), that logger will only print out and save logs that are at level 3 (warning) or above.
 
-Changing the default log level comes in handy when, for example, you create a few debug (level 1) level logs to troubleshoot your code in key places and would like to turn these debug messages on and off depending if you are troubleshooting or not. This turning on and off can be easily done by setting the log level from 1 (debug) to 2 (info) or vice versa.
+Changing the default log level comes in handy when, for example, you create a few debug (level 1) level logs to troubleshoot your code in key places and would like to turn these debug messages on and off depending on if you are troubleshooting or not. This turning on and off can be easily done by setting the log level from 1 (debug) to 2 (info) or vice versa.
 
 You can change default log level by using the `.default_level` logger property, which takes a positive integer. Note that you can display all log levels and see the default log level using the `.get_logger_levels()` method.
 
-The following is an example of chanign a default log level for a logger.
+The following is an example of changing a default log level for a logger.
 ```matlab
 % Creating the logger
 log = logger();
@@ -234,7 +234,7 @@ log.info("Logging a message inside this function with same logger");
 ```
 
 ## Using Multiple Loggers
-You can assign different loggers for different purposes. For example, let's say you would like one logger to log all things related to one part of the program like maybe the data aquisition, while another logger logs all messages related to the graphical interface of the program. 
+You can assign different loggers for different purposes. For example, let's say you would like one logger to log all things related to one part of the program like maybe the data acquisition, while another logger logs all messages related to the graphical interface of the program.
 
 In this case you can specify that each logger has its own message formatting and each logger saves its messages into seperate log files. In such a case you would also be able to seperately enable and disable each logger if needed.
 
@@ -275,7 +275,7 @@ logDefault.info("Program ended");
 
 ## :blue_book: Reference Docummentation
 ### Log Levels
-The following are the only available log levels for the logger. Each integer cooresponds to a log level. You can display all log levels and see the default log level using the `.get_logger_levels()` method.
+The following are the only available log levels for the logger. Each integer corresponds to a log level. You can display all log levels and see the default log level using the `.get_logger_levels()` method.
 
 | Level | Name       | Typical Usage                                                    |
 |-------|------------|------------------------------------------------------------------|
@@ -288,7 +288,7 @@ The following are the only available log levels for the logger. Each integer coo
 
 
 ### Creation
-The following command creats a logger object that is used to log messages
+The following command creats a logger object that is used to log messages:
 ```matlab
 log = logger(<logger_name>, <show_date>, <show_time>, <show_logging_filename>, <show_logging_function>, <show_logging_linenumber>, <log_filename>)
 ```
@@ -305,7 +305,7 @@ Although all of the creation/constructor logger parameters are optional with def
 |     3    | `show_time`               |     Boolean    |    Yes   |     false     | Show the current time in the log message           |
 |     4    | `show_logging_filename`   |     Boolean    |    Yes   |     false     | Show the file where the log message was made       |
 |     5    | `show_logging_function`   |     Boolean    |    Yes   |     false     | Show the function where the log message was made   |
-|     6    | `show_logging_linenumber` |     Boolean    |    Yes   |     false     | Show the linenumber where the log message was made |
+|     6    | `show_logging_linenumber` |     Boolean    |    Yes   |     false     | Show the line number where the log message was made |
 
 **Creation Example**
 ```matlab
@@ -324,9 +324,9 @@ log = logger("Badass Logger", true, true, false, false, true)
 | Method                             |      Parameter Type     | Description                            |
 |------------------------------------|:-----------------------:|----------------------------------------|
 | `.debug(<Log Message>)`            |      String or Char     | Log a debug level message (Level 1)    |
-| `.info(<Log Message>)`             |      String or Char     | Log a info level message (Level 2)     |
+| `.info(<Log Message>)`             |      String or Char     | Log an info level message (Level 2)     |
 | `.warning(<Log Message>)`          |      String or Char     | Log a warning level message (Level 3)  |
-| `.error(<Log Message>)`            |      String or Char     | Log a error level message (Level 4)    |
+| `.error(<Log Message>)`            |      String or Char     | Log an error level message (Level 4)    |
 | `.critical(<Log Message>)`         |      String or Char     | Log a critical level message (Level 5) |
 | `.fatal(<Log Message>)`            |      String or Char     | Log a fatal level message (Level 6)    |
 | `.log(<Log Level>, <Log Message>)` | Integer, String or Char | Log a message with any available level |
@@ -371,15 +371,15 @@ log = logger("Badass Logger", true, true, false, false, true)
 ## :clock5: Notes on Performance and Speed
 - Understand that the time duration per log may vary with the following logger settings.
     - *Logging formatting additions* - A logger that only shows the logger name will be very slightly faster than a logger displaying the name, date, time, and/or line number.
-    - *Logging to file* - Currently logging to file is slower than only loggering to the command window.
+    - *Logging to file* - Currently logging to file is slower than only logging to the command window.
     - *Logging to command window* - Obviously if nothing is printed out, it will be faster.
-- Remember that there is a `.time_the_logger()` method that you can use to measure the current logger settings and compare them to a simple `frpintf()` command.
-- Using simple "disp()" and "fprintf()" is faster than using this logger. However logger gives you lots of convenient ability and flexibility in return.
+- Remember that there is a `.time_the_logger()` method that you can use to measure the current logger settings and compare them to a simple `fprintf()` command.
+- Using simple `disp()` and `fprintf()` is faster than using this logger. However logger gives you lots of convenient ability and flexibility in return.
 
 ---
 ## :bust_in_silhouette: Author
-**Ismet Handžić** - Github: [@ismet55555](https://github.com/ismet55555)
+**Ismet Handžić** - GitHub: [@ismet55555](https://github.com/ismet55555)
 
 
 ## Licence
-This project is licensed under the Apache 2.0 - Please see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the Apache 2.0 License - Please see the [LICENSE](LICENSE) file for details.
