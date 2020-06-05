@@ -37,6 +37,7 @@ Logger was inspired by phython's `logging` package.
     * [Methods](#methods)
     * [Properties](#properties)
 * [Notes on Performance and Speed](#clock5-notes-on-performance-and-speed)
+* [Alternatives](#broken-heart-alternatives)
 * [Author](#bust_in_silhouette-author)
 * [Licence](#licence)
 
@@ -375,6 +376,13 @@ log = logger("Badass Logger", true, true, false, false, true)
     - *Logging to command window* - Obviously if nothing is printed out, it will be faster.
 - Remember that there is a `.time_the_logger()` method that you can use to measure the current logger settings and compare them to a simple `fprintf()` command.
 - Using simple `disp()` and `fprintf()` is faster than using this logger. However logger gives you lots of convenient ability and flexibility in return.
+
+
+## :broken_heart: Alternatives
+If you really don't like this logger, this repo, or me, well you may be in luck again!  There are a few alternatives you can look into.
+   - [logging4matlab](https://github.com/optimizers/logging4matlab)
+   - [SLF4M](https://github.com/apjanke/SLF4M)
+   
 
 ---
 ## :bust_in_silhouette: Author
