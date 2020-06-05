@@ -5,6 +5,7 @@
 3. See if file closure does not happen every log, but in object destructor
 4. Message input as `sprintf()` format, instead of having to format before hand
 5. Add option to specify which par-for process workers is logging (id = labindex)
+6. Add "TRACE" level before "DEBUG"
 
 ### FIXME
 1. ... pff.. i am sure there is a bug lurking in the dark ...
