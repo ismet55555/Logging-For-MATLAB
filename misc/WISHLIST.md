@@ -4,6 +4,7 @@ Some things I would love to have added to this logger
 1. Write to file in batches instead of line by line
 2. Seperate message formatting for command window and file
 3. Remote server or location logging
+4. Have a way to add a precursor for each message, such as all messages automatically have `Device 1` within the message.
 4. Integrate with remote logging services
 5. Simple DAQ option
    * logger.daq_init()             - filename, precision formatting, delimiter, show_headers
