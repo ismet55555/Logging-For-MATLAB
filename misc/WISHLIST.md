@@ -15,3 +15,6 @@ Some things I would love to have added to this logger
    * Time stamp and data (absoulute time, a)
    * Needs headers (with ID int as first column)
    * Store in logger
+6. Add an option or paramter that indicates to add a log section seperator
+    - Example:  log.break()
+    - Will yield something like "================================================" within the logs
