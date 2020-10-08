@@ -185,7 +185,7 @@ log.info("This a logging message");
 
 
 ### Logging Accross Functions
-If you want to use the same logger accross multiple different functions within the same script, you can do as follows:
+If you want to use the same logger accross multiple different functions within the same script, you can do one of the following:
 1. Pass the logger object variable into the function
     ```matlab
     log = logger();
