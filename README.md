@@ -20,6 +20,9 @@ Logger was inspired by phython's `logging` package.
 2. The logger can display a message with different levels such as `debug`, `error`, or `fatal`.
 3. There are many other things this logger can do, that a simple `fprintf()` command cannot.
 
+<p align="center"><a href="https://www.buymeacoffee.com/ismet55555" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a></p>
+
+
 
 ## :eyeglasses: Overview
 
